@@ -19,7 +19,7 @@ SCIcon <- makeIcon(
     iconWidth = 50, iconHeight = 50
 )
 
-SCsite <- "<a href='https://www.sc.com/sg/' >Standard Chartered</a>"
+SCsite <- "<a href='https://www.sc.com/sg/' >Work</a>"
 df <- data.frame(lat=c(1.280218,1.334940),
                  lng= c(103.854130,103.966506))
 df %>%
