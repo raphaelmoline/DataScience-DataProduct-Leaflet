@@ -1,5 +1,5 @@
 ---
-title: "LeafletAssignment"
+title: "Leaflet Assignment"
 author: "Raphael Moline"
 date: "02/07/2019"
 output: html_document
@@ -9,22 +9,22 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown test
+## My places in Singapore: work and home
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r echo=FALSE}
+library(leaflet)
+SCIcon <- makeIcon(
+    iconUrl = "https://av.sc.com/corp-en/content/images/SC_Full_colour_preview_logo.jpg",
+    iconWidth = 50, iconHeight = 50
+)
 
-```{r cars}
-summary(cars)
+SCsite <- "<a href='https://www.sc.com/sg/' >Standard Chartered</a>"
+df <- data.frame(lat=c(1.280218,1.334940),
+                 lng= c(103.854130,103.966506))
+df %>%
+    leaflet() %>%
+    addTiles() %>%
+    addMarkers(icon=SCIcon, popup = SCsite) %>%
+    addMarkers(lat=1.368542, ln=103.869332, popup = "Home")
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
