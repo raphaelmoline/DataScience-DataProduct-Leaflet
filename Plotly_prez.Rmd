@@ -7,6 +7,9 @@ output: ioslides_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+library(ggplot2)
+library(dplyr)
 ```
 
 ## Plotly assignment
@@ -17,22 +20,17 @@ This is an assignment to create a web page presentation using R Markdown that fe
 - first a graph using plot
 - second a graph using ggplot2
 
-## create Plot: diamonds data set, color by cut
+## create Plot: diamonds data
 
 ```{r diamonds, echo=FALSE, message = FALSE}
-library(ggplot2)
-library(dplyr)
-library(plotly)
-diamonds <- filter(diamonds, clarity %in% c( "I1","IF","VS1")) %>%
-    select(c(carat, cut,color,clarity, price))
-diamonds <- diamonds[sample(nrow(diamonds), 1000),]
+diamonds <- filter(diamonds, clarity %in% c( "I1","IF","VS1"))
 plot_ly(diamonds, x = ~carat, y = ~ price, mode = "markers", color = ~cut )
 ```
 
-## use ggplot2: high / medium / low quality by cut
+## Insect spray: boxplot of repellent and count of number of insect bites
 
 ```{r echo=FALSE, message=FALSE}
-p <- ggplot(data = diamonds, aes(x = carat, y = price, color = clarity))  +
-    geom_point() + facet_wrap( ~ cut) 
+p <- ggplot(InsectSprays,aes(x=spray,y=count,fill=spray))+
+    geom_boxplot()+guides(fill=FALSE)
     (gg <- ggplotly(p))
 ```
